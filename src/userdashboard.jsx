@@ -18,7 +18,7 @@ const UserDashboard = () => {
         }
 
         // Fetch user details
-        axios.get(`http://192.168.70.4:3002/api/users/${userId}`)
+        axios.get(`http://192.168.29.171:3002/api/users/${userId}`)
             .then(response => {
                 setName(response.data.name);
                 setUsername(response.data.username);
@@ -28,7 +28,7 @@ const UserDashboard = () => {
             });
 
         // Fetch user score
-        axios.get(`http://192.168.70.4:3002/api/scores/${userId}`)
+        axios.get(`http://192.168.29.171:3002/api/scores/${userId}`)
             .then(response => {
                 setScore(response.data.totalScore);
                 setAttemptNumber(response.data.attemptNumber || 1);

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [scores, setScores] = useState([]);
-  const API_URL = "http://192.168.70.4:3002/api"; // Backend Base URL
+  const API_URL = "http://192.168.29.171:3002/api"; // Backend Base URL
   const navigate = useNavigate();
 
   useEffect(() => {

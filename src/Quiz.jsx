@@ -18,7 +18,7 @@ const Quiz = () => {
           localStorage.setItem("quizSetNumber", setNumber);
         }
 
-        const response = await axios.get(`http://192.168.70.4:3002/api/questions/${setNumber}/random`);
+        const response = await axios.get(`http://192.168.29.171:3002/api/questions/${setNumber}/random`);
         setQuestions(response.data);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -74,7 +74,7 @@ const Quiz = () => {
         }
       });
 
-      const response = await axios.post("http://192.168.70.4:3002/api/scores/sc", {
+      const response = await axios.post("http://192.168.29.171:3002/api/scores/sc", {
         userId,
         setNumber,
         answers: formattedAnswers,

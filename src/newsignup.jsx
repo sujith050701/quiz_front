@@ -23,13 +23,13 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post("http://192.168.70.4:3002/api/users/signup", {
+      await axios.post("http://192.168.29.171:3002/api/users/signup", {
         name: formData.name,
         username: formData.username,
         password: formData.password,
       });
 
-      const response = await axios.post("http://192.168.70.4:3002/api/users/login", {
+      const response = await axios.post("http://192.168.29.171:3002/api/users/login", {
         username: formData.username,
         password: formData.password,
       });
