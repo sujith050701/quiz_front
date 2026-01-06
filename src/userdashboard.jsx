@@ -20,8 +20,10 @@ const UserDashboard = () => {
         // Fetch user details
         axios.get(`http://192.168.29.171:3002/api/users/${userId}`)
             .then(response => {
-                setName(response.data.name);
-                setUsername(response.data.username);
+                // Handle response format: backend wraps in { success: true, data: {...} }
+                const userData = response.data.data || response.data;
+                setName(userData.name || '');
+                setUsername(userData.username || '');
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
@@ -30,10 +32,12 @@ const UserDashboard = () => {
         // Fetch user score
         axios.get(`http://192.168.29.171:3002/api/scores/${userId}`)
             .then(response => {
-                setScore(response.data.totalScore);
-                setAttemptNumber(response.data.attemptNumber || 1);
-                console.log("User score:", response.data.totalScore);
-                console.log("Attempt Number:", response.data.attemptNumber);
+                // Handle response format: backend wraps in { success: true, data: {...} }
+                const scoreData = response.data.data || response.data;
+                setScore(scoreData.totalScore || 0);
+                setAttemptNumber(scoreData.attemptNumber || 1);
+                console.log("User score:", scoreData.totalScore);
+                console.log("Attempt Number:", scoreData.attemptNumber);
             })
             .catch(error => {
                 console.error('Error fetching user score:', error);

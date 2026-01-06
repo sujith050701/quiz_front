@@ -35,7 +35,9 @@ const SignUp = () => {
       });
 
       if (response.status === 200) {
-        localStorage.setItem("userId", response.data.userId);
+        // Handle response format: backend wraps in { success: true, data: {...} }
+        const loginData = response.data.data || response.data;
+        localStorage.setItem("userId", loginData.userId);
         navigate("/login");
       }
     } catch (error) {

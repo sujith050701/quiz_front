@@ -188,15 +188,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3002/api/users/login", {
+      const response = await axios.post("http://192.168.29.171:3002/api/users/login", {
         username: formData.username,
         password: formData.password,
       });
 
       if (response.status === 200) {
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem("name", response.data.name);
-        localStorage.setItem("score", response.data.totalScore);
+        // Handle response format: backend wraps in { success: true, data: {...} }
+        const loginData = response.data.data || response.data;
+        localStorage.setItem("userId", loginData.userId);
+        localStorage.setItem("name", loginData.name);
+        localStorage.setItem("score", loginData.totalScore || 0);
         navigate("/userdashboard");
       }
     } catch (error) {

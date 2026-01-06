@@ -154,14 +154,20 @@ const Result = () => {
                 Score: {score}/{totalQuestionsPerTopic} ({percentage}%)
               </p>
               <p style={styles.topicMessage}>{getAppreciationMessage(difficulty)}</p>
-              <a
-                href={videoLinks[topic][difficulty]}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.videoLink}
-              >
-                🎥 Watch Video for {topic}
-              </a>
+              {videoLinks[topic] && videoLinks[topic][difficulty] ? (
+                <a
+                  href={videoLinks[topic][difficulty]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles.videoLink}
+                >
+                  🎥 Watch Video for {topic}
+                </a>
+              ) : (
+                <p style={styles.noVideoMessage}>
+                  📚 Video resources for {topic} coming soon!
+                </p>
+              )}
             </div>
           );
         })}
@@ -295,6 +301,13 @@ const styles = {
       transform: 'translateY(-3px)',
       boxShadow: '0 0 30px rgba(69, 243, 255, 0.5)',
     },
+  },
+  noVideoMessage: {
+    fontSize: "1rem",
+    color: "#ffffff",
+    marginTop: "1.5rem",
+    opacity: 0.7,
+    fontStyle: "italic",
   },
   homeButton: {
     background: "#ff2770",
